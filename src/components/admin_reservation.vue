@@ -1,10 +1,11 @@
 <template lang="">
+    <div class="full-page">
      <button @click="drawer=true" class="md:hidden m-4">
     <v-icon icon="mdi-menu" end></v-icon>
   </button>
-    <v-app>
-    <v-navigation-drawer  v-model="drawer" :width="270">
-        <v-list-item prepend-icon="mdi-account-circle">
+    <v-app class="full-page">
+    <v-navigation-drawer full-page v-model="drawer" color="#e5ac77" :width="270">
+        <v-list-item color="#fff" prepend-icon="mdi-account-circle">
             <h1 class=" font-bold text-lg my-2">Admin Reservation</h1>
         </v-list-item>
       <v-list>
@@ -21,13 +22,13 @@
       </v-list>
     </v-navigation-drawer>
     <v-main>
-        <v-container class="fill-height flex items-center justify-center" >
-    <div v-if="selected==1" style="height:500px;width:100%">
+        <v-container class="full-page h-full flex items-center justify-center" >
+    <div v-if="selected==1" style="height:100%;width:100%">
     <div class=" w-full md:py-2" >
       <div class="overflow-y-auto" >
-  <table class="w-full border">
+  <table class="w-full border bg-white">
     <thead>
-      <tr>
+      <tr class="bg-slate-700 text-white">
         <th class="px-2 py-2">ID Reservation</th>
         <th class="px-2 py-2">Client</th>
         <th class="px-2 py-2">Départ</th>
@@ -43,7 +44,7 @@
         <td class="border px-2 py-2">{{ reservation.arrivee }}</td>
         <td class="border md:px-0 py-2 flex justify-center items-center gap-2">
           <button @click="valide(reservation)" class="w-7 h-7"><img src="../images/valide.png"/></button>
-          <button @click="modifier(reservation)" class="w-10 h-10"><img src="../images/edit.jpg"/> </button>
+          <button @click="modifier(reservation)" class="w-10 h-10"><img src="../images/edit.png"/> </button>
           <button @click="supprimer(reservation)" class="w-6 h-6"><img src="../images/delete.png"/> </button>
         </td>
       </tr>
@@ -56,9 +57,9 @@
   <div v-if="selected==2" style="height:500px;width:100%">
     <div class=" w-full md:py-2" >
       <div class="overflow-y-auto" >
-  <table class="w-full border">
+  <table class="w-full h-full border bg-white">
     <thead>
-      <tr>
+      <tr class="bg-slate-700 text-white">
         <th class="px-2 py-2">ID Reservation</th>
         <th class="px-2 py-2">Client</th>
         <th class="px-2 py-2">Départ</th>
@@ -141,7 +142,7 @@
         </v-container>
     </v-main>
 </v-app>
-   
+</div>
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -153,26 +154,30 @@ let modemodification = ref(false);
 let nom = ref();
 let dialog = ref(false);
 const reservations = ref([
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
-    { id: 3, nom: 'Johnson', prenom: 'Michael', email: 'exemple@gm.xom', compte: 2344, depart: 'Berlin', arrivee: 'Sydney' },
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
-    { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
-    { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 3, nom: 'Johnson', prenom: 'Michael', email: 'exemple@gm.xom', compte: 2344, depart: 'Berlin', arrivee: 'Sydney' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
+  { id: 1, nom: 'Doe', prenom: 'John', email: 'exemple@gm.xom', compte: 2344, depart: 'Paris', arrivee: 'New York' },
+  { id: 2, nom: 'Smith', prenom: 'Emma', email: 'exemple@gm.xom', compte: 2344, depart: 'London', arrivee: 'Tokyo' },
 
 ]);
 
 const modifier = (reservation) => {
-    dialog.value = true;
+  dialog.value = true;
 };
 </script>
-<style lang="">
-
+<style scoped>
+.full-page {
+  background-color: #f4dec9;
+  display: flex;
+  flex-direction: column;
+}
 </style>
